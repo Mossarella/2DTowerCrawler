@@ -1285,8 +1285,9 @@ MonoBehaviour:
   whatIsGround:
     serializedVersion: 2
     m_Bits: 256
-  jumpCounter: 0
-  jumpTimes: 0
+  jumpTimeCounter: 5
+  jumpTime: 1
+  isJumping: 0
 --- !u!61 &1703912605
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1325,10 +1326,10 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 10000
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 2
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1

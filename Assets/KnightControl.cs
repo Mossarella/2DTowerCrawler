@@ -16,12 +16,14 @@ public class KnightControl : MonoBehaviour
 
     public Transform groundPos;
     public bool isGrounded;
+    
     public float checkRadius;
     public LayerMask whatIsGround;
 
-    [SerializeField] int jumpCounter;
-    [SerializeField] int jumpTimes;
-    private bool isJumping;
+    [SerializeField] float jumpTimeCounter;
+    [SerializeField] float jumpTime;
+    public bool isJumping;
+
 
     void Start()
     {
@@ -52,7 +54,28 @@ public class KnightControl : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x , jumpForce);
             anim.SetTrigger("takeOff");
             isJumping = true;
+            jumpTimeCounter = jumpTime;
         }
+
+        if (CrossPlatformInputManager.GetButton("Jump")&& isJumping==true)
+        {
+            if (jumpTimeCounter > 0)
+            {
+                rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+                jumpTimeCounter -= Time.deltaTime;
+            }
+            else
+            { 
+                isJumping = false; 
+            }
+
+        }
+        if(CrossPlatformInputManager.GetButtonUp("Jump"))
+        {
+            isJumping = false;
+        }
+
+
         if (isGrounded == true)
         {
             anim.SetBool("isJumping", false);
@@ -79,7 +102,7 @@ public class KnightControl : MonoBehaviour
             runFactor = -1;
         }
         
-        //comment
+        //to limit the player movement as constant
 
 
 
